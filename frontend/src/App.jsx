@@ -84,7 +84,7 @@ export default function App() {
           <h2 className="text-xl font-extrabold text-amber-400">
             {currentWeather.name}
           </h2>
-          <p className="text-pink">
+          <p className="text-pink-500">
             Temperature:
             {isCelsius
               ? `${currentWeather.main.temp}°C`
