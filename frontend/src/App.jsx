@@ -40,8 +40,8 @@ export default function App() {
   const convertToFahrenheit = (celsius) => (celsius * 9) / 5 + 32;
 
   return (
-    <div className="flex flex-col items-center p-4 space-y-6 max-w-5xl mx-auto">
-      <h1 className="text-4xl font-bold text-blue-700 shadow-md px-4 py-2 bg-gradient-to-r from-blue-200 to-blue-50 rounded">
+    <div className="flex flex-col items-center p-4 space-y-6 max-w-7xl mx-auto">
+      <h1 className="text-4xl font-bold text-blue-700 shadow-lg p-4 bg-gradient-to-r from-blue-300 to-blue-100 rounded-lg">
         Weather App
       </h1>
 
@@ -51,17 +51,17 @@ export default function App() {
           placeholder="Enter city name"
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          className="flex-grow py-3 px-5 text-lg bg-gray-100 border border-gray-300 rounded shadow w-full md:w-auto"
+          className="flex-grow py-3 px-5 text-lg bg-gray-100 border border-gray-300 rounded shadow-md w-full md:w-auto"
         />
         <button
           onClick={getWeatherData}
-          className="py-3 px-6 bg-blue-500 text-white font-semibold rounded shadow w-full md:w-auto hover:bg-blue-600 transition"
+          className="py-3 px-6 bg-blue-500 text-white font-semibold rounded shadow-md w-full md:w-auto hover:bg-blue-600 transition"
         >
           Get Weather
         </button>
         <button
           onClick={toggleUnit}
-          className={`py-3 px-6 font-semibold rounded shadow w-full md:w-auto transition-colors ${
+          className={`py-3 px-6 font-semibold rounded shadow-md w-full md:w-auto transition-colors ${
             isCelsius ? "bg-green-500 text-white" : "bg-red-500 text-white"
           } hover:opacity-90`}
         >
@@ -70,29 +70,32 @@ export default function App() {
       </div>
 
       {error && (
-        <p className="text-red-500 text-center shadow-md p-4 rounded bg-red-50">
+        <p className="text-red-500 text-center shadow-md p-4 rounded-lg bg-red-100">
           {error}
         </p>
       )}
 
       {currentWeather && (
-        <div className="w-full bg-gradient-to-br from-blue-50 to-blue-100 shadow-md p-6 rounded-lg space-y-4">
+        <div className="w-full bg-gradient-to-br from-blue-100 to-blue-200 shadow-lg p-6 rounded-lg space-y-4">
           <h2 className="text-2xl font-bold text-blue-600 text-center">
             {currentWeather.name}
           </h2>
           <p className="text-lg text-gray-700 text-center">
-            Temperature:{" "}
-            {isCelsius
+            Temperature: {isCelsius
               ? `${currentWeather.main.temp}°C`
               : `${convertToFahrenheit(currentWeather.main.temp).toFixed(2)}°F`}
           </p>
           <div className="grid grid-cols-2 text-sm text-gray-600">
-            <p>Min: {isCelsius
-              ? `${currentWeather.main.temp_min}°C`
-              : `${convertToFahrenheit(currentWeather.main.temp_min).toFixed(2)}°F`}</p>
-            <p>Max: {isCelsius
-              ? `${currentWeather.main.temp_max}°C`
-              : `${convertToFahrenheit(currentWeather.main.temp_max).toFixed(2)}°F`}</p>
+            <p>
+              Min: {isCelsius
+                ? `${currentWeather.main.temp_min}°C`
+                : `${convertToFahrenheit(currentWeather.main.temp_min).toFixed(2)}°F`}
+            </p>
+            <p>
+              Max: {isCelsius
+                ? `${currentWeather.main.temp_max}°C`
+                : `${convertToFahrenheit(currentWeather.main.temp_max).toFixed(2)}°F`}
+            </p>
             <p>Humidity: {currentWeather.main.humidity}%</p>
             <p>Wind: {currentWeather.wind.speed} m/s</p>
           </div>
@@ -116,7 +119,7 @@ export default function App() {
             {forecast.map((day, index) => (
               <div
                 key={index}
-                className="p-4 bg-blue-400 text-white rounded shadow-lg text-center space-y-2"
+                className="p-4 bg-blue-500 text-white rounded-lg shadow-lg text-center space-y-2"
               >
                 <p>{new Date(day.dt * 1000).toLocaleDateString()}</p>
                 <p className="font-semibold">
